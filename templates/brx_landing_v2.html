@@ -1,0 +1,963 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: BRX In-Gym Info Call Landing Page v2
+  screenshotPath: ../images/template-previews/brx-landing-v2.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{#
+  SETUP NOTES
+  1) Replace partial paths below with your real theme partial paths if needed.
+  2) Template uses dnd_area — all sections are editable in the HubSpot page editor.
+  3) Meeting CTA links to the live HubSpot meetings URL.
+  4) Swap the scheduler panel for a HubSpot meetings embed module when ready.
+#}
+
+{% include "./partials/header.html" %}
+
+<main class="brx-page">
+  {% dnd_area "main_content"
+    label="Main content",
+    class="brx-page__inner"
+  %}
+
+    {# ── HERO ── #}
+    {% dnd_section
+      vertical_alignment="MIDDLE",
+      padding={
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-hero">'
+              ~   '<div class="brx-hero__bg" aria-hidden="true">'
+              ~     '<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" alt="" loading="eager" />'
+              ~     '<div class="brx-hero__overlay"></div>'
+              ~   '</div>'
+              ~   '<div class="brx-hero__content">'
+              ~     '<span class="brx-tag">The Midwest&#39;s #1 Rated Sport Performance Facility</span>'
+              ~     '<h1>Train Like<br>It Matters.</h1>'
+              ~     '<p>Individualized programming. Elite coaching. Real results. Book your info call and take the first step toward becoming a better athlete.</p>'
+              ~     '<div class="brx-hero__actions">'
+              ~       '<a class="brx-btn brx-btn--primary" href="https://meetings.hubspot.com/jason1173/in-gym-info-call" target="_blank" rel="noopener">Book Your Call</a>'
+              ~       '<a class="brx-btn brx-btn--ghost" href="https://www.brxperformance.com/brx-process">See the BRX Process</a>'
+              ~     '</div>'
+              ~   '</div>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# ── STATS BAR ── #}
+    {% dnd_section
+      padding={
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-stats">'
+              ~   '<div class="brx-stats__item">'
+              ~     '<span class="brx-stats__number">12+</span>'
+              ~     '<span class="brx-stats__label">Years Training</span>'
+              ~   '</div>'
+              ~   '<div class="brx-stats__divider" aria-hidden="true"></div>'
+              ~   '<div class="brx-stats__item">'
+              ~     '<span class="brx-stats__number">450+</span>'
+              ~     '<span class="brx-stats__label">College Commits</span>'
+              ~   '</div>'
+              ~   '<div class="brx-stats__divider" aria-hidden="true"></div>'
+              ~   '<div class="brx-stats__item">'
+              ~     '<span class="brx-stats__number">25</span>'
+              ~     '<span class="brx-stats__label">MLB Teams Represented</span>'
+              ~   '</div>'
+              ~   '<div class="brx-stats__divider" aria-hidden="true"></div>'
+              ~   '<div class="brx-stats__item">'
+              ~     '<span class="brx-stats__number">#1</span>'
+              ~     '<span class="brx-stats__label">Rated Midwest Facility</span>'
+              ~   '</div>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# ── PROCESS ── #}
+    {% dnd_section
+      padding={
+        "top": 96,
+        "bottom": 96,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-section-header">'
+              ~   '<span class="brx-tag">How It Works</span>'
+              ~   '<h2>The BRX Process.</h2>'
+              ~   '<p>Every athlete who walks through our doors follows the same proven path to performance.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-steps">'
+
+              ~   '<div class="brx-step">'
+              ~     '<div class="brx-step__num">01</div>'
+              ~     '<div class="brx-step__body">'
+              ~       '<div class="brx-step__label">Pre-Arrival</div>'
+              ~       '<h3>Express your goals.</h3>'
+              ~       '<p>Does your gym cater only to the football team? BRX makes programs unique to the athlete and the sport.</p>'
+              ~     '</div>'
+              ~   '</div>'
+
+              ~   '<div class="brx-step">'
+              ~     '<div class="brx-step__num">02</div>'
+              ~     '<div class="brx-step__body">'
+              ~       '<div class="brx-step__label">Visit 1</div>'
+              ~       '<h3>Assessment.</h3>'
+              ~       '<p>A BRX Performance Specialist reviews your goals and takes the athlete through mobility and skill testing.</p>'
+              ~     '</div>'
+              ~   '</div>'
+
+              ~   '<div class="brx-step">'
+              ~     '<div class="brx-step__num">03</div>'
+              ~     '<div class="brx-step__body">'
+              ~       '<div class="brx-step__label">Visit 2</div>'
+              ~       '<h3>1-on-1 Session.</h3>'
+              ~       '<p>The first real training session with a BRX trainer by the athlete&#39;s side guiding every rep.</p>'
+              ~     '</div>'
+              ~   '</div>'
+
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# ── SCHEDULER ── #}
+    {% dnd_section
+      padding={
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-scheduler">'
+
+              ~   '<div class="brx-scheduler__copy">'
+              ~     '<span class="brx-tag brx-tag--light">Schedule a Call</span>'
+              ~     '<h2>Ready to take<br>the first step?</h2>'
+              ~     '<ul class="brx-checklist">'
+              ~       '<li>Discuss goals, sport, age, and level</li>'
+              ~       '<li>Learn the best next step in the BRX process</li>'
+              ~       '<li>Move quickly toward assessment and training</li>'
+              ~     '</ul>'
+              ~   '</div>'
+
+              ~   '<div class="brx-scheduler__panel">'
+              ~     '<div class="brx-embed-card">'
+              ~       '<div class="brx-embed-card__header">'
+              ~         '<div>'
+              ~           '<p class="brx-embed-card__title">In-Gym Info Call</p>'
+              ~           '<p class="brx-embed-card__sub">BRX Performance &bull; 30 min &bull; Free</p>'
+              ~         '</div>'
+              ~         '<span class="brx-embed-card__badge">Book Now</span>'
+              ~       '</div>'
+              ~       '<div class="brx-embed-card__body">'
+              ~         '<div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jason1173/in-gym-info-call?embed=true"></div>'
+              ~       '</div>'
+              ~     '</div>'
+              ~   '</div>'
+
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# ── TESTIMONIAL ── #}
+    {% dnd_section
+      padding={
+        "top": 96,
+        "bottom": 96,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-proof">'
+
+              ~   '<div class="brx-proof__header">'
+              ~     '<span class="brx-tag">Results</span>'
+              ~     '<h2>What athletes say.</h2>'
+              ~   '</div>'
+
+              ~   '<div class="brx-proof__grid">'
+
+              ~     '<figure class="brx-testimonial">'
+              ~       '<blockquote>'
+              ~         '<p>Choosing to train with BRX may be the best decision I ever made for my baseball career. Before BRX, I would pitch at 92&ndash;94 mph. After my first offseason I touched 100 mph in a spring training game.</p>'
+              ~       '</blockquote>'
+              ~       '<figcaption>'
+              ~         '<strong>Ben Heller</strong>'
+              ~         '<span>Yankees RHP</span>'
+              ~       '</figcaption>'
+              ~     '</figure>'
+
+              ~     '<div class="brx-proof__cta">'
+              ~       '<p class="brx-proof__cta-text">Use this space for transformation-focused proof that builds confidence before booking.</p>'
+              ~       '<a class="brx-btn brx-btn--outline" href="https://www.brxperformance.com/brx-process">See More Results</a>'
+              ~     '</div>'
+
+              ~   '</div>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {# ── FINAL CTA ── #}
+    {% dnd_section
+      padding={
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-final-cta">'
+              ~   '<span class="brx-tag">Get Started</span>'
+              ~   '<h2>Your best season<br>starts here.</h2>'
+              ~   '<p>Book your call. Learn the process. Take the next step toward individualized training that gets results.</p>'
+              ~   '<div class="brx-final-cta__actions">'
+              ~     '<a class="brx-btn brx-btn--primary" href="https://meetings.hubspot.com/jason1173/in-gym-info-call" target="_blank" rel="noopener">Book Your Call</a>'
+              ~     '<a class="brx-btn brx-btn--ghost" href="https://www.brxperformance.com/assessment">Schedule an Assessment</a>'
+              ~   '</div>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+</main>
+
+{% include "./partials/footer.html" %}
+
+{% require_css %}
+<style>
+  /* ─────────────────────────────────────────
+     RESET & BASE
+  ───────────────────────────────────────── */
+  .brx-page *,
+  .brx-page *::before,
+  .brx-page *::after {
+    box-sizing: border-box;
+  }
+
+  .brx-page {
+    background: #0d0d0d;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .brx-page__inner {
+    overflow: hidden;
+  }
+
+  /* ─────────────────────────────────────────
+     TAG / EYEBROW
+  ───────────────────────────────────────── */
+  .brx-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(243, 107, 33, 0.12);
+    border: 1px solid rgba(243, 107, 33, 0.3);
+    color: #f36b21;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .brx-tag--light {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  /* ─────────────────────────────────────────
+     BUTTONS
+  ───────────────────────────────────────── */
+  .brx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 32px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: opacity 0.15s, background 0.15s, color 0.15s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .brx-btn--primary {
+    background: #f36b21;
+    color: #ffffff;
+  }
+  .brx-btn--primary:hover { opacity: 0.88; }
+
+  .brx-btn--ghost {
+    background: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(255,255,255,0.3);
+  }
+  .brx-btn--ghost:hover {
+    border-color: rgba(255,255,255,0.7);
+  }
+
+  .brx-btn--outline {
+    background: transparent;
+    color: #f36b21;
+    border: 1.5px solid #f36b21;
+  }
+  .brx-btn--outline:hover { opacity: 0.8; }
+
+  .brx-btn--full { width: 100%; }
+
+  /* ─────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────── */
+  .brx-hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .brx-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .brx-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  .brx-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.60) 55%,
+      rgba(0,0,0,0.20) 100%
+    );
+  }
+
+  .brx-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 80px 48px 100px;
+    width: 100%;
+    max-width: 680px;
+    padding-left: max(48px, calc((100vw - 1240px) / 2 + 48px));
+  }
+
+  .brx-hero__content .brx-tag {
+    margin-bottom: 28px;
+  }
+
+  .brx-hero__content h1 {
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin: 0 0 24px;
+  }
+
+  .brx-hero__content p {
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 0 40px;
+  }
+
+  .brx-hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ─────────────────────────────────────────
+     STATS BAR
+  ───────────────────────────────────────── */
+  .brx-stats {
+    background: #f36b21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 28px 48px;
+    flex-wrap: wrap;
+  }
+
+  .brx-stats__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 48px;
+    gap: 4px;
+  }
+
+  .brx-stats__number {
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .brx-stats__label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .brx-stats__divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+  }
+
+  /* ─────────────────────────────────────────
+     SECTION HEADER
+  ───────────────────────────────────────── */
+  .brx-section-header {
+    max-width: 1240px;
+    margin: 0 auto 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: end;
+    gap: 16px 48px;
+  }
+
+  .brx-section-header .brx-tag {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .brx-section-header h2 {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.97;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .brx-section-header p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+    max-width: 340px;
+    margin: 0;
+    align-self: end;
+  }
+
+  /* ─────────────────────────────────────────
+     PROCESS STEPS
+  ───────────────────────────────────────── */
+  .brx-steps {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .brx-step {
+    background: #161616;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .brx-step:hover {
+    border-color: rgba(243, 107, 33, 0.3);
+  }
+
+  .brx-step__num {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    color: rgba(243, 107, 33, 0.15);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .brx-step__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f36b21;
+  }
+
+  .brx-step h3 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #ffffff;
+    margin: 4px 0 0;
+  }
+
+  .brx-step p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────────────────
+     SCHEDULER SPLIT
+  ───────────────────────────────────────── */
+  .brx-scheduler {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+
+  .brx-scheduler__copy {
+    background: #111111;
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .brx-scheduler__copy .brx-tag {
+    margin-bottom: 28px;
+    align-self: flex-start;
+  }
+
+  .brx-scheduler__copy h2 {
+    font-size: clamp(38px, 4vw, 60px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.97;
+    color: #ffffff;
+    margin: 0 0 32px;
+  }
+
+  .brx-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .brx-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .brx-checklist li::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(243, 107, 33, 0.15);
+    border: 1.5px solid #f36b21;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23f36b21' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .brx-scheduler__panel {
+    background: #0d0d0d;
+    padding: 80px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─────────────────────────────────────────
+     EMBED CARD
+  ───────────────────────────────────────── */
+  .brx-embed-card {
+    background: #161616;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  }
+
+  .brx-embed-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: #1a1a1a;
+  }
+
+  .brx-embed-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 3px;
+  }
+
+  .brx-embed-card__sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+  }
+
+  .brx-embed-card__badge {
+    background: #f36b21;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .brx-embed-card__body {
+    background: #ffffff;
+  }
+
+  /* HubSpot meetings embed */
+  .meetings-iframe-container {
+    width: 100%;
+    min-height: 640px;
+  }
+
+  .meetings-iframe-container iframe {
+    width: 100% !important;
+    border: none !important;
+    display: block;
+  }
+
+  /* ─────────────────────────────────────────
+     TESTIMONIAL / PROOF
+  ───────────────────────────────────────── */
+  .brx-proof {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .brx-proof__header {
+    margin-bottom: 56px;
+  }
+
+  .brx-proof__header .brx-tag {
+    margin-bottom: 20px;
+  }
+
+  .brx-proof__header h2 {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.97;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .brx-proof__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .brx-testimonial {
+    background: #161616;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 48px;
+    margin: 0;
+  }
+
+  .brx-testimonial blockquote {
+    margin: 0 0 32px;
+  }
+
+  .brx-testimonial blockquote::before {
+    content: "\201C";
+    display: block;
+    font-size: 80px;
+    line-height: 0.7;
+    color: #f36b21;
+    margin-bottom: 16px;
+    font-family: Georgia, serif;
+  }
+
+  .brx-testimonial p {
+    font-size: 19px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .brx-testimonial figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .brx-testimonial figcaption strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .brx-testimonial figcaption span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .brx-proof__cta {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .brx-proof__cta-text {
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────────────────
+     FINAL CTA
+  ───────────────────────────────────────── */
+  .brx-final-cta {
+    background: #f36b21;
+    padding: 96px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .brx-final-cta .brx-tag {
+    background: rgba(0,0,0,0.15);
+    border-color: rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 28px;
+  }
+
+  .brx-final-cta h2 {
+    font-size: clamp(44px, 6vw, 80px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: #ffffff;
+    margin: 0 0 24px;
+  }
+
+  .brx-final-cta p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 0 48px;
+  }
+
+  .brx-final-cta__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brx-final-cta .brx-btn--primary {
+    background: #ffffff;
+    color: #f36b21;
+  }
+
+  .brx-final-cta .brx-btn--ghost {
+    border-color: rgba(255,255,255,0.4);
+    color: #ffffff;
+  }
+
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .brx-section-header {
+      grid-template-columns: 1fr;
+    }
+    .brx-section-header p {
+      grid-column: 1;
+      grid-row: 3;
+      max-width: 100%;
+    }
+    .brx-steps {
+      grid-template-columns: 1fr;
+    }
+    .brx-scheduler {
+      grid-template-columns: 1fr;
+    }
+    .brx-scheduler__copy,
+    .brx-scheduler__panel {
+      padding: 56px 32px;
+    }
+    .brx-proof__grid {
+      grid-template-columns: 1fr;
+    }
+    .brx-proof__cta {
+      padding: 0;
+    }
+    .brx-stats {
+      gap: 0;
+    }
+    .brx-stats__item {
+      padding: 12px 24px;
+      flex: 1 1 40%;
+    }
+    .brx-stats__divider {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .brx-hero__content {
+      padding: 80px 24px;
+    }
+    .brx-hero__content h1 {
+      font-size: 52px;
+    }
+    .brx-final-cta {
+      padding: 72px 24px;
+    }
+    .brx-step {
+      padding: 28px 24px;
+    }
+    .brx-testimonial {
+      padding: 32px 24px;
+    }
+    .brx-hero__actions,
+    .brx-final-cta__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .brx-btn {
+      text-align: center;
+    }
+  }
+</style>
+{% end_require_css %}
+
+{% require_js %}
+<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+{% end_require_js %}
+
+{% endblock body %}

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRX Landing v2 — iPhone Preview</title>
+  <style>
+    /* ── Page shell ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #1a1a2e;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(243,107,33,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(120,80,255,0.06) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 48px 24px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .page-label {
+      color: rgba(255,255,255,0.35);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    /* ── iPhone 15 Pro frame ── */
+    .iphone {
+      position: relative;
+      width: 393px;
+      height: 852px;
+      background: #1c1c1e;
+      border-radius: 54px;
+      box-shadow:
+        0 0 0 1.5px #3a3a3c,
+        0 0 0 3px #1c1c1e,
+        0 0 0 4px #3a3a3c,
+        0 40px 120px rgba(0,0,0,0.7),
+        0 8px 32px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+
+    /* Side buttons */
+    .iphone::before {
+      content: "";
+      position: absolute;
+      right: -4px;
+      top: 160px;
+      width: 4px;
+      height: 80px;
+      background: #3a3a3c;
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 100px 0 #3a3a3c;
+    }
+
+    .iphone::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 130px;
+      width: 4px;
+      height: 44px;
+      background: #3a3a3c;
+      border-radius: 3px 0 0 3px;
+      box-shadow: 0 58px 0 #3a3a3c, 0 116px 0 #3a3a3c;
+    }
+
+    /* Screen area */
+    .iphone__screen {
+      position: absolute;
+      inset: 6px;
+      border-radius: 48px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Dynamic Island */
+    .iphone__island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 34px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    /* Scrollable content inside screen */
+    .iphone__content {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .iphone__content::-webkit-scrollbar { display: none; }
+
+    /* Status bar spacer */
+    .iphone__statusbar {
+      height: 58px;
+      background: #0d0d0d;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 28px 10px;
+      flex-shrink: 0;
+    }
+    .iphone__statusbar-time {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .iphone__statusbar-icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .iphone__statusbar-icons svg {
+      fill: #fff;
+    }
+
+    /* Home indicator */
+    .iphone__home {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 34px;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .iphone__home-bar {
+      width: 134px;
+      height: 5px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 3px;
+    }
+
+    /* ─────────────────────────────────────────
+       LANDING PAGE STYLES (mobile-first)
+    ───────────────────────────────────────── */
+    .brx-page {
+      background: #0d0d0d;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      width: 100%;
+    }
+
+    /* Fake nav */
+    .brx-nav {
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .brx-nav__logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #f36b21;
+    }
+    .brx-nav__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+    .brx-nav__menu span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+    .brx-nav__menu span:last-child { width: 14px; }
+
+    /* Tag */
+    .brx-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(243,107,33,0.12);
+      border: 1px solid rgba(243,107,33,0.3);
+      color: #f36b21;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .brx-tag--light {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    /* Buttons */
+    .brx-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .brx-btn--primary { background: #f36b21; color: #fff; }
+    .brx-btn--ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .brx-btn--outline {
+      background: transparent;
+      color: #f36b21;
+      border: 1.5px solid #f36b21;
+    }
+    .brx-btn--full { width: 100%; text-align: center; }
+
+    /* HERO */
+    .brx-hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .brx-hero__bg {
+      position: absolute;
+      inset: 0;
+    }
+    .brx-hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+    .brx-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        175deg,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.55) 45%,
+        rgba(0,0,0,0.92) 100%
+      );
+    }
+    .brx-hero__content {
+      position: relative;
+      z-index: 1;
+      padding: 0 24px 44px;
+      width: 100%;
+    }
+    .brx-hero__content .brx-tag { margin-bottom: 16px; }
+    .brx-hero__content h1 {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 0.93;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin: 0 0 16px;
+    }
+    .brx-hero__content p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+      margin: 0 0 28px;
+    }
+    .brx-hero__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* STATS */
+    .brx-stats {
+      background: #f36b21;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background-color: rgba(255,255,255,0.15);
+    }
+    .brx-stats__item {
+      background: #f36b21;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 12px;
+      gap: 4px;
+    }
+    .brx-stats__number {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #fff;
+      line-height: 1;
+    }
+    .brx-stats__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+    }
+
+    /* PROCESS */
+    .brx-process-section {
+      padding: 56px 24px;
+    }
+    .brx-section-head {
+      margin-bottom: 36px;
+    }
+    .brx-section-head .brx-tag { margin-bottom: 14px; }
+    .brx-section-head h2 {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+      color: #fff;
+      margin: 0 0 12px;
+    }
+    .brx-section-head p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+    .brx-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brx-step {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .brx-step__num {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      color: rgba(243,107,33,0.18);
+      flex-shrink: 0;
+      width: 52px;
+    }
+    .brx-step__label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f36b21;
+      margin-bottom: 6px;
+    }
+    .brx-step h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin: 0 0 8px;
+      line-height: 1.1;
+    }
+    .brx-step p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    /* SCHEDULER */
+    .brx-scheduler-section {
+      background: #111;
+      padding: 56px 24px;
+    }
+    .brx-scheduler-section .brx-tag { margin-bottom: 16px; }
+    .brx-scheduler-section h2 {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+      color: #fff;
+      margin: 0 0 24px;
+    }
+    .brx-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .brx-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .brx-checklist li::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(243,107,33,0.15);
+      border: 1.5px solid #f36b21;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23f36b21' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .brx-embed-card {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 32px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .brx-embed-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: #222;
+    }
+    .brx-embed-card__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 3px;
+    }
+    .brx-embed-card__sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+    }
+    .brx-embed-card__badge {
+      background: #f36b21;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .brx-embed-card__body {
+      background: #161616;
+    }
+    .brx-embed-card__body iframe {
+      width: 100%;
+      min-height: 520px;
+      border: none;
+      display: block;
+      filter: invert(1) hue-rotate(180deg);
+    }
+
+    /* TESTIMONIAL */
+    .brx-proof-section {
+      padding: 56px 24px;
+    }
+    .brx-proof-section .brx-tag { margin-bottom: 14px; }
+    .brx-proof-section h2 {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.96;
+      color: #fff;
+      margin: 0 0 32px;
+    }
+    .brx-testimonial {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin: 0 0 20px;
+    }
+    .brx-testimonial blockquote { margin: 0 0 20px; }
+    .brx-testimonial blockquote::before {
+      content: "\201C";
+      display: block;
+      font-size: 56px;
+      line-height: 0.7;
+      color: #f36b21;
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+    }
+    .brx-testimonial p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.8);
+      margin: 0;
+      font-style: italic;
+    }
+    .brx-testimonial figcaption { display: flex; flex-direction: column; gap: 3px; }
+    .brx-testimonial figcaption strong { font-size: 14px; font-weight: 700; color: #fff; }
+    .brx-testimonial figcaption span { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+    /* FINAL CTA */
+    .brx-final-cta {
+      background: #f36b21;
+      padding: 64px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .brx-final-cta .brx-tag {
+      background: rgba(0,0,0,0.15);
+      border-color: rgba(0,0,0,0.2);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+    }
+    .brx-final-cta h2 {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: #fff;
+      margin: 0 0 16px;
+    }
+    .brx-final-cta p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 36px;
+    }
+    .brx-final-cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+    .brx-final-cta .brx-btn--primary { background: #fff; color: #f36b21; }
+    .brx-final-cta .brx-btn--ghost { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+    /* Footer */
+    .brx-footer {
+      background: #080808;
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .brx-footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+    .brx-footer a { color: #f36b21; text-decoration: none; }
+
+    /* ── Page caption ── */
+    .page-caption {
+      margin-top: 28px;
+      color: rgba(255,255,255,0.2);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-label">BRX Performance · iPhone 15 Pro Preview</p>
+
+  <!-- ── iPhone frame ── -->
+  <div class="iphone">
+    <div class="iphone__screen">
+      <div class="iphone__island"></div>
+
+      <div class="iphone__content">
+
+        <!-- Status bar -->
+        <div class="iphone__statusbar">
+          <span class="iphone__statusbar-time">9:41</span>
+          <div class="iphone__statusbar-icons">
+            <!-- Signal -->
+            <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".5"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".3"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity=".2"/></svg>
+            <!-- Wifi -->
+            <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/><path d="M3.5 6.5A6.5 6.5 0 0 1 8 5a6.5 6.5 0 0 1 4.5 1.5" stroke="#fff" stroke-width="1.5" fill="none" opacity=".5"/><path d="M1 4A9.5 9.5 0 0 1 8 1.5 9.5 9.5 0 0 1 15 4" stroke="#fff" stroke-width="1.5" fill="none" opacity=".25"/></svg>
+            <!-- Battery -->
+            <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="3" stroke="#fff" stroke-width="1.2" fill="none"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="#fff"/><path d="M22.5 4v4a2 2 0 0 0 0-4z" fill="#fff" opacity=".4"/></svg>
+          </div>
+        </div>
+
+        <!-- Landing page content -->
+        <div class="brx-page">
+
+          <!-- Nav -->
+          <nav class="brx-nav">
+            <span class="brx-nav__logo">BRX</span>
+            <div class="brx-nav__menu">
+              <span></span><span></span><span></span>
+            </div>
+          </nav>
+
+          <!-- Hero -->
+          <div class="brx-hero">
+            <div class="brx-hero__bg" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80" alt="" loading="eager" />
+              <div class="brx-hero__overlay"></div>
+            </div>
+            <div class="brx-hero__content">
+              <span class="brx-tag">The Midwest's #1 Rated Sport Performance Facility</span>
+              <h1>Train Like<br>It Matters.</h1>
+              <p>Individualized programming. Elite coaching. Real results. Book your info call and take the first step.</p>
+              <div class="brx-hero__actions">
+                <a class="brx-btn brx-btn--primary brx-btn--full" href="#">Book Your Call</a>
+                <a class="brx-btn brx-btn--ghost brx-btn--full" href="#">See the BRX Process</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="brx-stats">
+            <div class="brx-stats__item">
+              <span class="brx-stats__number">12+</span>
+              <span class="brx-stats__label">Years Training</span>
+            </div>
+            <div class="brx-stats__item">
+              <span class="brx-stats__number">450+</span>
+              <span class="brx-stats__label">College Commits</span>
+            </div>
+            <div class="brx-stats__item">
+              <span class="brx-stats__number">25</span>
+              <span class="brx-stats__label">MLB Teams Represented</span>
+            </div>
+            <div class="brx-stats__item">
+              <span class="brx-stats__number">#1</span>
+              <span class="brx-stats__label">Rated Midwest Facility</span>
+            </div>
+          </div>
+
+          <!-- Process -->
+          <div class="brx-process-section">
+            <div class="brx-section-head">
+              <span class="brx-tag">How It Works</span>
+              <h2>The BRX Process.</h2>
+              <p>Every athlete follows the same proven path to performance.</p>
+            </div>
+            <div class="brx-steps">
+              <div class="brx-step">
+                <div class="brx-step__num">01</div>
+                <div>
+                  <div class="brx-step__label">Pre-Arrival</div>
+                  <h3>Express your goals.</h3>
+                  <p>BRX makes programs unique to the athlete and the sport — not just one team.</p>
+                </div>
+              </div>
+              <div class="brx-step">
+                <div class="brx-step__num">02</div>
+                <div>
+                  <div class="brx-step__label">Visit 1</div>
+                  <h3>Assessment.</h3>
+                  <p>Review goals, then mobility and skill testing with a BRX Performance Specialist.</p>
+                </div>
+              </div>
+              <div class="brx-step">
+                <div class="brx-step__num">03</div>
+                <div>
+                  <div class="brx-step__label">Visit 2</div>
+                  <h3>1-on-1 Session.</h3>
+                  <p>First real training session with a BRX trainer guiding every rep.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scheduler -->
+          <div class="brx-scheduler-section">
+            <span class="brx-tag brx-tag--light">Schedule a Call</span>
+            <h2>Ready to take<br>the first step?</h2>
+            <ul class="brx-checklist">
+              <li>Discuss goals, sport, age, and level</li>
+              <li>Learn the best next step in the BRX process</li>
+              <li>Move quickly toward assessment and training</li>
+            </ul>
+            <div class="brx-embed-card">
+              <div class="brx-embed-card__header">
+                <div>
+                  <p class="brx-embed-card__title">In-Gym Info Call</p>
+                  <p class="brx-embed-card__sub">BRX Performance &bull; 30 min &bull; Free</p>
+                </div>
+                <span class="brx-embed-card__badge">Book Now</span>
+              </div>
+              <div class="brx-embed-card__body">
+                <iframe
+                  src="https://meetings.hubspot.com/jason1173/in-gym-info-call?embed=true"
+                  width="100%"
+                  style="min-height:520px;border:none;display:block;"
+                  title="Book an In-Gym Info Call"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial -->
+          <div class="brx-proof-section">
+            <span class="brx-tag">Results</span>
+            <h2>What athletes say.</h2>
+            <figure class="brx-testimonial">
+              <blockquote>
+                <p>Choosing to train with BRX may be the best decision I ever made for my baseball career. Before BRX, I pitched at 92&ndash;94 mph. After my first offseason I touched 100 mph.</p>
+              </blockquote>
+              <figcaption>
+                <strong>Ben Heller</strong>
+                <span>Yankees RHP</span>
+              </figcaption>
+            </figure>
+            <a class="brx-btn brx-btn--outline brx-btn--full" href="#">See More Results</a>
+          </div>
+
+          <!-- Final CTA -->
+          <div class="brx-final-cta">
+            <span class="brx-tag">Get Started</span>
+            <h2>Your best season<br>starts here.</h2>
+            <p>Book your call. Learn the process. Take the next step.</p>
+            <div class="brx-final-cta__actions">
+              <a class="brx-btn brx-btn--primary brx-btn--full" href="#">Book Your Call</a>
+              <a class="brx-btn brx-btn--ghost brx-btn--full" href="#">Schedule an Assessment</a>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="brx-footer">
+            <p>&copy; 2026 <a href="#">BRX Performance</a></p>
+          </div>
+
+        </div><!-- /.brx-page -->
+
+        <!-- Home indicator (sticky to bottom of scroll container via flex) -->
+        <div class="iphone__home">
+          <div class="iphone__home-bar"></div>
+        </div>
+
+      </div><!-- /.iphone__content -->
+    </div><!-- /.iphone__screen -->
+  </div><!-- /.iphone -->
+
+  <p class="page-caption">375 × 812 · iOS viewport · Scroll to explore all sections</p>
+
+</body>
+</html>
