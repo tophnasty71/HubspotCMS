@@ -1,0 +1,517 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: BRX In-Gym Info Call Landing Page
+  screenshotPath: ../images/template-previews/brx-in-gym-info-call.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{#
+  IMPORTANT SETUP NOTES
+  1) Replace the global partial paths below with your real theme partial paths if needed.
+  2) This template is built with dnd_area so marketers can edit sections in the HubSpot page editor.
+  3) The meeting CTA currently links to your live meeting URL.
+  4) If you have a custom HubSpot meetings embed module, swap that into the scheduler section.
+#}
+
+{% include "./partials/header.html" %}
+
+<main class="brx-meeting-page">
+  {% dnd_area "main_content"
+    label="Main content",
+    class="body-container body-container--landing brx-meeting-page__content"
+  %}
+
+    {% dnd_section
+      vertical_alignment="MIDDLE",
+      padding={
+        "top": 48,
+        "bottom": 16,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-hero-copy" style="text-align:center; max-width: 900px; margin: 0 auto;">'
+              ~   '<div class="brx-eyebrow">The Midwest&#39;s #1 Rated Sport Performance Training Facility</div>'
+              ~   '<h1>Individualized Training. Incredible Results.</h1>'
+              ~   '<p>Use this scheduling page to help athletes and families learn about BRX in-gym training, understand the process, and book the next step. It mirrors the structure and messaging style of the main BRX site while keeping the page focused on the call.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/button",
+            offset=3,
+            width=3,
+            text="Click Here To Get Started",
+            link={
+              "url": {
+                "type": "EXTERNAL",
+                "href": "https://meetings.hubspot.com/jason1173/in-gym-info-call"
+              },
+              "open_in_new_tab": true,
+              "no_follow": false
+            },
+            style={
+              "alignment": "CENTER",
+              "button_type": "PRIMARY"
+            }
+          %}
+          {% end_dnd_module %}
+
+          {% dnd_module
+            path="@hubspot/button",
+            width=3,
+            text="BRX Process",
+            link={
+              "url": {
+                "type": "EXTERNAL",
+                "href": "https://www.brxperformance.com/brx-process"
+              },
+              "open_in_new_tab": false,
+              "no_follow": false
+            },
+            style={
+              "alignment": "CENTER",
+              "button_type": "SECONDARY"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "top": 16,
+        "bottom": 36,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=12 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/image",
+            img={
+              "src": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80",
+              "alt": "Athlete training placeholder",
+              "loading": "lazy",
+              "size_type": "auto_custom_max",
+              "max_width": 1600,
+              "max_height": 900
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "top": 0,
+        "bottom": 24,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=4 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-process-card">'
+              ~   '<div class="brx-process-step">Pre-Arrival</div>'
+              ~   '<h3>Express your goals.</h3>'
+              ~   '<p>Does your gym cater only to the football team? BRX makes programs unique to the athlete and the sport.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+
+      {% dnd_column width=4 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-process-card">'
+              ~   '<div class="brx-process-step">Visit 1</div>'
+              ~   '<h3>Assessment.</h3>'
+              ~   '<p>A BRX Performance Specialist first sits down with you to review goals, then takes the athlete through mobility and skill testing.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+
+      {% dnd_column width=4 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-process-card">'
+              ~   '<div class="brx-process-step">Visit 2</div>'
+              ~   '<h3>1-on-1 Session.</h3>'
+              ~   '<p>The first real training session happens with a BRX trainer by the athlete’s side to guide every step of the process.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      vertical_alignment="MIDDLE",
+      padding={
+        "top": 16,
+        "bottom": 24,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=5 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-scheduler-copy">'
+              ~   '<div class="brx-eyebrow">Click Here To Schedule A Call</div>'
+              ~   '<h2>Schedule your BRX call.</h2>'
+              ~   '<p>This section is the meeting-page version of the BRX get-started CTA. Use it to help parents and athletes quickly schedule a call, ask questions, and understand the next step in the in-gym process.</p>'
+              ~   '<ul>'
+              ~     '<li>Discuss goals, fit, age and level</li>'
+              ~     '<li>Learn the best next step in the BRX in-gym process</li>'
+              ~     '<li>Move quickly toward assessment and training</li>'
+              ~   '</ul>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/button",
+            text="Click Here To Get Started",
+            link={
+              "url": {
+                "type": "EXTERNAL",
+                "href": "https://meetings.hubspot.com/jason1173/in-gym-info-call"
+              },
+              "open_in_new_tab": true,
+              "no_follow": false
+            },
+            style={
+              "alignment": "LEFT",
+              "button_type": "PRIMARY"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+
+      {% dnd_column width=7 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-scheduler-panel">'
+              ~   '<div class="brx-scheduler-panel__header">'
+              ~     '<span>In-Gym Info Call</span>'
+              ~     '<span>HubSpot Meetings</span>'
+              ~   '</div>'
+              ~   '<div class="brx-scheduler-panel__body">'
+              ~     '<p><strong>Use one of these options in HubSpot:</strong></p>'
+              ~     '<ol>'
+              ~       '<li>Replace this block with your meetings embed/custom module.</li>'
+              ~       '<li>Keep this panel and use the CTA button to open the scheduler.</li>'
+              ~     '</ol>'
+              ~     '<p><a href="https://meetings.hubspot.com/jason1173/in-gym-info-call" target="_blank" rel="noopener">Open Jason&#39;s In-Gym Info Call Scheduler</a></p>'
+              ~   '</div>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "top": 16,
+        "bottom": 24,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=6 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-testimonial-card">'
+              ~   '<div class="brx-quote">&ldquo;</div>'
+              ~   '<p>Choosing to train with BRX may be the best decision I ever made for my baseball career. Before BRX, I would pitch at 92-94 mph. After my first offseason of training with BRX, I touched 100 mph in a spring training game.</p>'
+              ~   '<p><strong>Ben Heller • Yankees RHP</strong></p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+
+      {% dnd_column width=6 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-proof-card">'
+              ~   '<div class="brx-eyebrow">Social Proof</div>'
+              ~   '<h2>What they say about us.</h2>'
+              ~   '<p>Use this space the same way the main BRX site uses social proof: short transformation-focused proof that builds confidence before booking.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "top": 16,
+        "bottom": 48,
+        "left": 24,
+        "right": 24
+      }
+    %}
+      {% dnd_column width=8 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html=''
+              ~ '<div class="brx-final-cta-copy">'
+              ~   '<div class="brx-eyebrow">Click Here To Get Started</div>'
+              ~   '<h2>Ready to get started with BRX?</h2>'
+              ~   '<p>Book your call to learn how the process works, ask questions, and take the next step toward assessment and individualized training.</p>'
+              ~ '</div>'
+            ''
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+
+      {% dnd_column width=4 %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/button",
+            text="Click Here To Get Started",
+            link={
+              "url": {
+                "type": "EXTERNAL",
+                "href": "https://meetings.hubspot.com/jason1173/in-gym-info-call"
+              },
+              "open_in_new_tab": true,
+              "no_follow": false
+            },
+            style={
+              "alignment": "CENTER",
+              "button_type": "PRIMARY"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+
+        {% dnd_row %}
+          {% dnd_module
+            path="@hubspot/button",
+            text="Schedule an Assessment",
+            link={
+              "url": {
+                "type": "EXTERNAL",
+                "href": "https://www.brxperformance.com/assessment"
+              },
+              "open_in_new_tab": false,
+              "no_follow": false
+            },
+            style={
+              "alignment": "CENTER",
+              "button_type": "SECONDARY"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+</main>
+
+{% include "./partials/footer.html" %}
+
+{% require_css %}
+<style>
+  .brx-meeting-page {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  }
+
+  .brx-meeting-page__content {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  .brx-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 999px;
+    background: #fff;
+    color: #5f5f5f;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .brx-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #f36b21;
+    display: inline-block;
+  }
+
+  .brx-hero-copy h1,
+  .brx-scheduler-copy h2,
+  .brx-proof-card h2,
+  .brx-final-cta-copy h2 {
+    color: #111111;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    margin: 18px 0 16px;
+  }
+
+  .brx-hero-copy h1 {
+    font-size: clamp(42px, 5.5vw, 68px);
+  }
+
+  .brx-scheduler-copy h2,
+  .brx-proof-card h2,
+  .brx-final-cta-copy h2 {
+    font-size: clamp(30px, 4vw, 48px);
+  }
+
+  .brx-hero-copy p,
+  .brx-scheduler-copy p,
+  .brx-proof-card p,
+  .brx-final-cta-copy p,
+  .brx-process-card p,
+  .brx-testimonial-card p,
+  .brx-scheduler-panel__body p,
+  .brx-scheduler-panel__body li {
+    color: #5f5f5f;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .brx-process-card,
+  .brx-testimonial-card,
+  .brx-proof-card,
+  .brx-scheduler-panel {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 28px;
+    height: 100%;
+  }
+
+  .brx-process-step {
+    color: #f36b21;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .brx-process-card h3 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    line-height: 1.05;
+    color: #111111;
+    letter-spacing: -0.03em;
+  }
+
+  .brx-scheduler-panel__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+  }
+
+  .brx-scheduler-panel__body ol,
+  .brx-scheduler-copy ul {
+    padding-left: 20px;
+    margin: 16px 0;
+  }
+
+  .brx-scheduler-panel__body a {
+    color: #f36b21;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .brx-quote {
+    color: #f36b21;
+    font-size: 64px;
+    line-height: 0.8;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 767px) {
+    .brx-hero-copy h1 {
+      font-size: 40px;
+    }
+
+    .brx-scheduler-copy h2,
+    .brx-proof-card h2,
+    .brx-final-cta-copy h2,
+    .brx-process-card h3 {
+      font-size: 28px;
+    }
+
+    .brx-hero-copy p,
+    .brx-scheduler-copy p,
+    .brx-proof-card p,
+    .brx-final-cta-copy p,
+    .brx-process-card p,
+    .brx-testimonial-card p,
+    .brx-scheduler-panel__body p,
+    .brx-scheduler-panel__body li {
+      font-size: 16px;
+    }
+  }
+</style>
+{% end_require_css %}
+
+{% endblock body %}
