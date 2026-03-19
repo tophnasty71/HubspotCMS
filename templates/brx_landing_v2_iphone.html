@@ -484,16 +484,14 @@
       flex-shrink: 0;
     }
     .brx-embed-card__body {
-      background: #fff;
+      background: #161616;
     }
-    .meetings-iframe-container {
+    .brx-embed-card__body iframe {
       width: 100%;
       min-height: 520px;
-    }
-    .meetings-iframe-container iframe {
-      width: 100% !important;
-      border: none !important;
+      border: none;
       display: block;
+      filter: invert(1) hue-rotate(180deg);
     }
 
     /* TESTIMONIAL */
