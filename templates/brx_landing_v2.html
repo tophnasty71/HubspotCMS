@@ -192,25 +192,19 @@
               ~       '<li>Learn the best next step in the BRX process</li>'
               ~       '<li>Move quickly toward assessment and training</li>'
               ~     '</ul>'
-              ~     '<a class="brx-btn brx-btn--primary" href="https://meetings.hubspot.com/jason1173/in-gym-info-call" target="_blank" rel="noopener">Book Your Call</a>'
               ~   '</div>'
 
               ~   '<div class="brx-scheduler__panel">'
-              ~     '<div class="brx-panel">'
-              ~       '<div class="brx-panel__header">'
+              ~     '<div class="brx-embed-card">'
+              ~       '<div class="brx-embed-card__header">'
               ~         '<div>'
-              ~           '<p class="brx-panel__title">In-Gym Info Call</p>'
-              ~           '<p class="brx-panel__sub">BRX Performance &bull; 30 min</p>'
+              ~           '<p class="brx-embed-card__title">In-Gym Info Call</p>'
+              ~           '<p class="brx-embed-card__sub">BRX Performance &bull; 30 min &bull; Free</p>'
               ~         '</div>'
-              ~         '<span class="brx-panel__badge">Free</span>'
+              ~         '<span class="brx-embed-card__badge">Book Now</span>'
               ~       '</div>'
-              ~       '<div class="brx-panel__body">'
-              ~         '<p><strong>Two ways to schedule:</strong></p>'
-              ~         '<ol>'
-              ~           '<li>Replace this block with your HubSpot meetings embed module.</li>'
-              ~           '<li>Keep this panel and direct athletes to the CTA button.</li>'
-              ~         '</ol>'
-              ~         '<a class="brx-btn brx-btn--primary brx-btn--full" href="https://meetings.hubspot.com/jason1173/in-gym-info-call" target="_blank" rel="noopener">Open Scheduler &rarr;</a>'
+              ~       '<div class="brx-embed-card__body">'
+              ~         '<div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/jason1173/in-gym-info-call?embed=true"></div>'
               ~       '</div>'
               ~     '</div>'
               ~   '</div>'
@@ -683,75 +677,66 @@
   }
 
   /* ─────────────────────────────────────────
-     SCHEDULER PANEL CARD
+     EMBED CARD
   ───────────────────────────────────────── */
-  .brx-panel {
+  .brx-embed-card {
     background: #161616;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     width: 100%;
-    max-width: 460px;
+    max-width: 560px;
     overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
   }
 
-  .brx-panel__header {
+  .brx-embed-card__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 28px;
+    padding: 20px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
     background: #1a1a1a;
   }
 
-  .brx-panel__title {
-    font-size: 16px;
+  .brx-embed-card__title {
+    font-size: 15px;
     font-weight: 700;
     color: #ffffff;
-    margin: 0 0 4px;
+    margin: 0 0 3px;
   }
 
-  .brx-panel__sub {
-    font-size: 13px;
+  .brx-embed-card__sub {
+    font-size: 12px;
     color: rgba(255,255,255,0.4);
     margin: 0;
   }
 
-  .brx-panel__badge {
-    background: rgba(243, 107, 33, 0.12);
-    border: 1px solid rgba(243, 107, 33, 0.3);
-    color: #f36b21;
+  .brx-embed-card__badge {
+    background: #f36b21;
+    color: #ffffff;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 999px;
+    flex-shrink: 0;
   }
 
-  .brx-panel__body {
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .brx-embed-card__body {
+    background: #ffffff;
   }
 
-  .brx-panel__body p,
-  .brx-panel__body li {
-    font-size: 15px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-    margin: 0;
+  /* HubSpot meetings embed */
+  .meetings-iframe-container {
+    width: 100%;
+    min-height: 640px;
   }
 
-  .brx-panel__body strong {
-    color: rgba(255,255,255,0.85);
-  }
-
-  .brx-panel__body ol {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .meetings-iframe-container iframe {
+    width: 100% !important;
+    border: none !important;
+    display: block;
   }
 
   /* ─────────────────────────────────────────
@@ -970,5 +955,9 @@
   }
 </style>
 {% end_require_css %}
+
+{% require_js %}
+<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+{% end_require_js %}
 
 {% endblock body %}
